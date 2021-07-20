@@ -2,7 +2,7 @@ FROM marketplace.gcr.io/google/debian10
 
 ENV HAPROXY_VERSION 2.4.2
 ENV C2D_RELEASE 2.4.2
-ENV HAPROXY_URL https://www.haproxy.org/download/2.4/src/haproxy-2.4.2.tar.gz
+ENV HAPROXY_URL https://www.haproxy.org/download/2.0/src/haproxy-2.4.2.tar.gz
 ENV HAPROXY_SHA256 edf9788f7f3411498e3d7b21777036b4dc14183e95c8e2ce7577baa0ea4ea2aa
 
 # see https://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments
@@ -23,7 +23,9 @@ RUN set -x \
 	&& wget -O haproxy.tar.gz "$HAPROXY_URL" \
 	&& echo "$HAPROXY_SHA256 *haproxy.tar.gz" | sha256sum -c \
 	&& mkdir -p /usr/src/haproxy \
+	&& mkdir -p /usr/local/src/haproxy \
 	&& tar -xzf haproxy.tar.gz -C /usr/src/haproxy --strip-components=1 \
+	&& tar -xzf haproxy.tar.gz -C /usr/local/src/haproxy --strip-components=1 \
 	&& rm haproxy.tar.gz \
 	\
 	&& makeOpts=' \
@@ -60,15 +62,14 @@ RUN set -x \
 		| cut -d: -f1 \
 		| sort -u \
 		| xargs -r apt-mark manual \
-	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-	
+	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
+
 # https://www.haproxy.org/download/1.8/doc/management.txt
 # "4. Stopping and restarting HAProxy"
 # "when the SIGTERM signal is sent to the haproxy process, it immediately quits and all established connections are closed"
 # "graceful stop is triggered when the SIGUSR1 signal is sent to the haproxy process"
-#STOPSIGNAL SIGUSR1
+STOPSIGNAL SIGUSR1
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
 CMD ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]

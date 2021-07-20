@@ -1,3 +1,5 @@
+#!/bin/sh
+#
 # Copyright 2020 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
@@ -15,23 +17,19 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 
-_variables:
-  from9: &from9 gcr.io/google-appengine/debian9:latest
-versions:
-  - dir: '2/debian9/2.4'
-    repo: haproxy2
-    tags:
-      - '2.4.2-debian9'
-      - '2.4-debian9'
-      - '2.4.2'
-      - '2.4'
-      - '2-debian9'
-      - '2'
-      - 'latest'
-    from: *from9
-    packages:
-      haproxy:
-        sha256: edf9788f7f3411498e3d7b21777036b4dc14183e95c8e2ce7577baa0ea4ea2aa
-        version: '2.4.2'
-cloudbuild:
-  enable_parallel: false
+set -e
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- haproxy "$@"
+fi
+
+if [ "$1" = 'haproxy' ]; then
+	shift # "haproxy"
+	# if the user wants "haproxy", let's add a couple useful flags
+	#   -W  -- "master-worker mode" (similar to the old "haproxy-systemd-wrapper"; allows for reload via "SIGUSR2")
+	#   -db -- disables background mode
+	set -- haproxy -W -db "$@"
+fi
+
+exec "$@"

@@ -63,9 +63,6 @@ RUN set -x \
 		| sort -u \
 		| xargs -r apt-mark manual \
 	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-
-# smoke test
-	haproxy -v
 	
 # https://www.haproxy.org/download/1.8/doc/management.txt
 # "4. Stopping and restarting HAProxy"

@@ -27,4 +27,4 @@ tests:
   command: [haproxy, -v ]
   expect:
     stdout:
-      matches: '^HA-Proxy version'
+      matches: '^HAProxy version'

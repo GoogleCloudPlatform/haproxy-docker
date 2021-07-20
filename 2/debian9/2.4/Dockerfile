@@ -1,4 +1,4 @@
-FROM gcr.io/google-appengine/debian9:latest
+FROM marketplace.gcr.io/google/debian10
 
 ENV HAPROXY_VERSION 2.4.2
 ENV C2D_RELEASE 2.4.2
@@ -36,6 +36,7 @@ RUN set -x \
 		USE_OPENSSL=1 \
 		USE_PCRE2=1 USE_PCRE2_JIT=1 \
 		USE_ZLIB=1 \
+		USE_PROMEX=1 \
 		\
 		EXTRA_OBJS=" \
 # see https://github.com/docker-library/haproxy/issues/94#issuecomment-505673353 for more details about prometheus support

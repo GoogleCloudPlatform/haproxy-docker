@@ -14,9 +14,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
-_variables:
-  from9: &from9 gcr.io/google-appengine/debian9:latest
 versions:
   - dir: '2/debian9/2.4'
     repo: haproxy2
@@ -28,7 +25,7 @@ versions:
       - '2-debian9'
       - '2'
       - 'latest'
-    from: *from9
+    from: marketplace.gcr.io/google/debian10
     packages:
       haproxy:
         sha256: edf9788f7f3411498e3d7b21777036b4dc14183e95c8e2ce7577baa0ea4ea2aa

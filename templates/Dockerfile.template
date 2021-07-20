@@ -4,7 +4,7 @@ FROM {{ .From }}
 
 ENV HAPROXY_VERSION {{ $haproxy.Version }}
 ENV C2D_RELEASE {{ $haproxy.Version }}
-ENV HAPROXY_URL https://www.haproxy.org/download/2.0/src/haproxy-{{ $haproxy.Version }}.tar.gz
+ENV HAPROXY_URL https://www.haproxy.org/download/2.4/src/haproxy-{{ $haproxy.Version }}.tar.gz
 ENV HAPROXY_SHA256 {{ $haproxy.Sha256 }}
 
 # see https://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments

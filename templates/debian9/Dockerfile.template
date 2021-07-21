@@ -1,9 +1,11 @@
-FROM marketplace.gcr.io/google/debian9
+{{- $haproxy := index .Packages "haproxy" -}}
 
-ENV HAPROXY_VERSION 2.0.14
-ENV C2D_RELEASE 2.0.14
-ENV HAPROXY_URL https://www.haproxy.org/download/2.0/src/haproxy-2.0.14.tar.gz
-ENV HAPROXY_SHA256 552a708b8b6efd0f241f5d9fd7ad4168d37ce17cdb6dcb6239c2e519f0a63c75
+FROM {{ .From }}
+
+ENV HAPROXY_VERSION {{ $haproxy.Version }}
+ENV C2D_RELEASE {{ $haproxy.Version }}
+ENV HAPROXY_URL https://www.haproxy.org/download/2.0/src/haproxy-{{ $haproxy.Version }}.tar.gz
+ENV HAPROXY_SHA256 {{ $haproxy.Sha256 }}
 
 # see https://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments
 RUN set -x \

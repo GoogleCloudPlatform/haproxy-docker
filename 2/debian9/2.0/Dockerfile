@@ -1,8 +1,8 @@
-FROM gcr.io/google-appengine/debian9:latest
+FROM marketplace.gcr.io/google/debian9
 
 ENV HAPROXY_VERSION 2.0.14
 ENV C2D_RELEASE 2.0.14
-ENV HAPROXY_URL https://www.haproxy.org/download/2.0/src/haproxy-2.0.14.tar.gz
+ENV HAPROXY_URL https://www.haproxy.org/download/2.4/src/haproxy-2.0.14.tar.gz
 ENV HAPROXY_SHA256 552a708b8b6efd0f241f5d9fd7ad4168d37ce17cdb6dcb6239c2e519f0a63c75
 
 # see https://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments
@@ -18,7 +18,6 @@ RUN set -x \
 		libssl-dev \
 		make \
 		wget \
-		zlib1g-dev \
 	&& rm -rf /var/lib/apt/lists/* \
 	\
 	&& wget -O haproxy.tar.gz "$HAPROXY_URL" \
@@ -35,13 +34,17 @@ RUN set -x \
 		USE_LUA=1 LUA_INC=/usr/include/lua5.3 \
 		USE_OPENSSL=1 \
 		USE_PCRE2=1 USE_PCRE2_JIT=1 \
-		USE_ZLIB=1 \
+		USE_PROMEX=1 \
 		\
 		EXTRA_OBJS=" \
-# see https://github.com/docker-library/haproxy/issues/94#issuecomment-505673353 for more details about prometheus support
-			contrib/prometheus-exporter/service-prometheus.o \
 		" \
 	' \
+# https://salsa.debian.org/haproxy-team/haproxy/-/commit/53988af3d006ebcbf2c941e34121859fd6379c70t
+	dpkgArch="$(dpkg --print-architecture)"; \
+	case "$dpkgArch" in \
+		armel) makeOpts="$makeOpts ADDLIB=-latomic" ;; \
+	esac \
+	\
 	&& nproc="$(nproc)" \
 	&& eval "make -C /usr/src/haproxy -j '$nproc' all $makeOpts" \
 	&& eval "make -C /usr/src/haproxy install-bin $makeOpts" \
@@ -58,14 +61,13 @@ RUN set -x \
 		| xargs -r dpkg-query --search \
 		| cut -d: -f1 \
 		| sort -u \
-		| xargs -r apt-mark manual \
-	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
-
+		| xargs -r apt-mark manual 
+		
 # https://www.haproxy.org/download/1.8/doc/management.txt
 # "4. Stopping and restarting HAProxy"
 # "when the SIGTERM signal is sent to the haproxy process, it immediately quits and all established connections are closed"
 # "graceful stop is triggered when the SIGUSR1 signal is sent to the haproxy process"
-#STOPSIGNAL SIGUSR1
+STOPSIGNAL SIGUSR1
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]

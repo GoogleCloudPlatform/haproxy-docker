@@ -30,5 +30,19 @@ versions:
       haproxy:
         sha256: edf9788f7f3411498e3d7b21777036b4dc14183e95c8e2ce7577baa0ea4ea2aa
         version: '2.4.2'
+  - dir: '2/debian9/2.0'
+    repo: haproxy2
+    tags:
+      - '2.0.14-debian9'
+      - '2.0-debian9'
+      - '2.0.14'
+      - '2.0'
+    from: marketplace.gcr.io/google/debian9
+    packages:
+      haproxy:
+        sha256: 552a708b8b6efd0f241f5d9fd7ad4168d37ce17cdb6dcb6239c2e519f0a63c75
+        version: '2.0.14'
+cloudbuild:
+  enable_parallel: false
 cloudbuild:
   enable_parallel: false

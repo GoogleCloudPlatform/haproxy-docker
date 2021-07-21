@@ -26,7 +26,7 @@ versions:
       - '2'
       - 'latest'
     excludeTests:
-      - version_2.0_test.yaml
+      - tests/functional_tests/version_2.0_test.yaml
     from: marketplace.gcr.io/google/debian10
     templateSubDir: debian10
     packages:
@@ -41,7 +41,7 @@ versions:
       - '2.0.14'
       - '2.0'
     excludeTests:
-      - version_test.yaml
+      - tests/functional_tests/version_test.yaml
     from: marketplace.gcr.io/google/debian9
     templateSubDir: debian9
     packages:

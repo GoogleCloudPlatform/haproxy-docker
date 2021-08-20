@@ -18,11 +18,11 @@ versions:
   - dir: '2/debian9/2.4'
     repo: haproxy2
     tags:
-      - '2.4.2-debian9'
-      - '2.4-debian9'
+      - '2.4.2-debian10'
+      - '2.4-debian10'
       - '2.4.2'
       - '2.4'
-      - '2-debian9'
+      - '2-debian10'
       - '2'
       - 'latest'
     from: marketplace.gcr.io/google/debian10

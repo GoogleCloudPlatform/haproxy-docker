@@ -38,8 +38,6 @@ versions:
       - '2.0-debian9'
       - '2.0.14'
       - '2.0'
-    excludeTests:
-      - tests/functional_tests/version_test.yaml
     from: marketplace.gcr.io/google/debian9
     templateSubDir: debian9
     packages:

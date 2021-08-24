@@ -1,4 +1,6 @@
-# Copyright (C) 2020 Google LLC
+#!/bin/sh
+#
+# Copyright 2020 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,17 +16,20 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-setup:
-- command: [ docker, run, --name, some-haproxy-$UNIQUE-id, -d, '$IMAGE', sleep, 5 ]
 
-teardown:
-- command: [docker, stop, some-haproxy-$UNIQUE-id]
-- command: [docker, rm, some-haproxy-$UNIQUE-id]
+set -e
 
-target: some-haproxy-$UNIQUE-id
-tests:
-- name: Show HAProxy version
-  command: [haproxy, -v ]
-  expect:
-    stdout:
-      matches: '^HA.?Proxy version'
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- haproxy "$@"
+fi
+
+if [ "$1" = 'haproxy' ]; then
+	shift # "haproxy"
+	# if the user wants "haproxy", let's add a couple useful flags
+	#   -W  -- "master-worker mode" (similar to the old "haproxy-systemd-wrapper"; allows for reload via "SIGUSR2")
+	#   -db -- disables background mode
+	set -- haproxy -W -db "$@"
+fi
+
+exec "$@"

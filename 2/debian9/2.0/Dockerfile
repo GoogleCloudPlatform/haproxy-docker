@@ -1,4 +1,4 @@
-FROM marketplace.gcr.io/google/debian9
+FROM gcr.io/google-appengine/debian9:latest
 
 ENV HAPROXY_VERSION 2.0.14
 ENV C2D_RELEASE 2.0.14

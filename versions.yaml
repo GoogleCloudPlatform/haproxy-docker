@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2022 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,14 +22,14 @@ versions:
   from: marketplace.gcr.io/google/debian10
   packages:
     haproxy:
-      sha256: 16a5ed6256ca3670e41b76366a892b08485643204a3ce72b6e7a2d9a313aa225
-      version: 2.5.0
+      sha256: 3e90790dfc832afa6ca4fdf4528de2ce2e74f3e1f74bed0d70ad54bd5920e954
+      version: 2.5.1
   repo: haproxy2
   tags:
-  - 2.5.0-debian10
+  - 2.5.1-debian10
   - 2.5-debian10
   - 2-debian10
-  - 2.5.0
+  - 2.5.1
   - '2.5'
   - '2'
   - latest

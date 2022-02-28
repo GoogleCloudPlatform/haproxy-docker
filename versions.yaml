@@ -22,14 +22,14 @@ versions:
   from: marketplace.gcr.io/google/debian10
   packages:
     haproxy:
-      sha256: 3e90790dfc832afa6ca4fdf4528de2ce2e74f3e1f74bed0d70ad54bd5920e954
-      version: 2.5.1
+      sha256: dc4015d85c7fef811b459803b763001d809b07a9251dc1864fedb9a07b44aefb
+      version: 2.5.4
   repo: haproxy2
   tags:
-  - 2.5.1-debian10
+  - 2.5.4-debian10
   - 2.5-debian10
   - 2-debian10
-  - 2.5.1
+  - 2.5.4
   - '2.5'
   - '2'
   - latest

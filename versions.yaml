@@ -19,11 +19,12 @@ cloudbuild:
   enable_parallel: false
 versions:
 - dir: 2/debian10/2.6
-  from: marketplace.gcr.io/google/debian10
+  from: marketplace.gcr.io/google/debian11
   packages:
     haproxy:
       sha256: 915b351e6450d183342c4cdcda7771eac4f0f72bf90582adcd15a01c700d29b1
       version: 2.6.1
+      minor: 2.6
   repo: haproxy2
   tags:
   - 2.6.1-debian10

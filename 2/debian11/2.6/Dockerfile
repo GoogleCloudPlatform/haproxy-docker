@@ -1,4 +1,4 @@
-FROM marketplace.gcr.io/google/debian10
+FROM marketplace.gcr.io/google/debian11
 
 ENV HAPROXY_VERSION 2.6.1
 ENV C2D_RELEASE 2.6.1
@@ -17,6 +17,7 @@ RUN set -x \
 		libpcre2-dev \
 		libssl-dev \
 		make \
+		openssl \
 		wget \
 	&& rm -rf /var/lib/apt/lists/* \
 	\

@@ -19,6 +19,7 @@ RUN set -x \
 		libpcre2-dev \
 		libssl-dev \
 		make \
+		openssl \
 		wget \
 	&& rm -rf /var/lib/apt/lists/* \
 	\

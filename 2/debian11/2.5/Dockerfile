@@ -17,6 +17,7 @@ RUN set -x \
 		libpcre2-dev \
 		libssl-dev \
 		make \
+		openssl \
 		wget \
 	&& rm -rf /var/lib/apt/lists/* \
 	\
@@ -61,8 +62,8 @@ RUN set -x \
 		| xargs -r dpkg-query --search \
 		| cut -d: -f1 \
 		| sort -u \
-		| xargs -r apt-mark manual 
-		
+		| xargs -r apt-mark manual
+
 # https://www.haproxy.org/download/1.8/doc/management.txt
 # "4. Stopping and restarting HAProxy"
 # "when the SIGTERM signal is sent to the haproxy process, it immediately quits and all established connections are closed"

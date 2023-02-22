@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,20 +18,20 @@
 cloudbuild:
   enable_parallel: false
 versions:
-- dir: 2/debian11/2.6
-  from: marketplace.gcr.io/google/debian11
+- dir: 2/debian11/2.7
+  from: marketplace.gcr.io/google/c2d-debian11
   packages:
     haproxy:
-      sha256: 915b351e6450d183342c4cdcda7771eac4f0f72bf90582adcd15a01c700d29b1
-      version: 2.6.1
-      minor: 2.6
+      minor: '2.7'
+      sha256: b17e51b96531843b4a99d2c3b6218281bc988bf624c9ff90e19f0cbcba25d067
+      version: 2.7.3
   repo: haproxy2
   tags:
-  - 2.6.1-debian11
-  - 2.6-debian11
+  - 2.7.3-debian11
+  - 2.7-debian11
   - 2-debian11
-  - 2.6.1
-  - '2.6'
+  - 2.7.3
+  - '2.7'
   - '2'
   - latest
 

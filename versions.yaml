@@ -23,14 +23,14 @@ versions:
   packages:
     haproxy:
       minor: '2.7'
-      sha256: b17e51b96531843b4a99d2c3b6218281bc988bf624c9ff90e19f0cbcba25d067
-      version: 2.7.3
+      sha256: 133f357ddb3fcfc5ad8149ef3d74cbb5db6bb4a5ab67289ce0b0ab686cdeb74f
+      version: 2.7.6
   repo: haproxy2
   tags:
-  - 2.7.3-debian11
+  - 2.7.6-debian11
   - 2.7-debian11
   - 2-debian11
-  - 2.7.3
+  - 2.7.6
   - '2.7'
   - '2'
   - latest

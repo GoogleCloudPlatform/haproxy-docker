@@ -1,9 +1,9 @@
 FROM marketplace.gcr.io/google/c2d-debian11
 
-ENV HAPROXY_VERSION 2.7.6
-ENV C2D_RELEASE 2.7.6
-ENV HAPROXY_URL https://www.haproxy.org/download/2.7/src/haproxy-2.7.6.tar.gz
-ENV HAPROXY_SHA256 133f357ddb3fcfc5ad8149ef3d74cbb5db6bb4a5ab67289ce0b0ab686cdeb74f
+ENV HAPROXY_VERSION 2.7.8
+ENV C2D_RELEASE 2.7.8
+ENV HAPROXY_URL https://www.haproxy.org/download/2.7/src/haproxy-2.7.8.tar.gz
+ENV HAPROXY_SHA256 15f2276971bbba8c47d86cc82ebfc6ec33e3aef2e4565058b2e4950c07b8e75c
 
 # see https://sources.debian.net/src/haproxy/jessie/debian/rules/ for some helpful navigation of the possible "make" arguments
 RUN set -x \

@@ -18,20 +18,20 @@
 cloudbuild:
   enable_parallel: false
 versions:
-- dir: 2/debian11/2.8
+- dir: 2/debian11/2.9
   from: marketplace.gcr.io/google/c2d-debian11
   packages:
     haproxy:
-      minor: '2.8'
-      sha256: 9ecc6ffe67a977d1ed279107bbdab790d73ae2a626bc38eee23fa1f6786a759e
-      version: 2.8.3
+      minor: '2.9'
+      sha256: fba18acd1a46337fe20ae07c816c2496c8602b80a1bc9ff3768d4caa5fb80eab
+      version: 2.9.0
   repo: haproxy2
   tags:
-  - 2.8.3-debian11
-  - 2.8-debian11
+  - 2.9.0-debian11
+  - 2.9-debian11
   - 2-debian11
-  - 2.8.3
-  - '2.8'
+  - 2.9.0
+  - '2.9'
   - '2'
   - latest
 

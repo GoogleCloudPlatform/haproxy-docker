@@ -1,13 +1,4 @@
 haproxy-docker
 ============
 
-Dockerfile source for HAProxy [docker](https://docker.io) image.
-
-# Upstream
-
-This source repo was originally copied from:
-https://github.com/docker-library/haproxy
-
-# Disclaimer
-
-This is not an official Google product.
+## This repository has been deprecated. Check the [latest commit tree](https://github.com/GoogleCloudPlatform/haproxy-docker/tree/53aaff8aea0bb5cebbef4d450951e6c46d173a81).
